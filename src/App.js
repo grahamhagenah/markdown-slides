@@ -9,7 +9,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 function App() {
-  const [markdown, setMarkdown] = useState();
+  // const [markdown, setMarkdown] = useState();
   const [slides, setSlides] = useState([])
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -17,9 +17,9 @@ function App() {
   const currentSlides = slides;
 
   // Function to change slides based on some condition or input
-  const changeSlide = (newMarkdown) => {
-    setMarkdown(newMarkdown);
-  };
+  // const changeSlide = (newMarkdown) => {
+  //   setMarkdown(newMarkdown);
+  // };
   
   function handleEditorChange({ html, text }) {
 
@@ -59,7 +59,7 @@ function App() {
             <ReactMarkdown className="slide" key={index} remarkPlugins={[gfm]} children={slide}/>
           ))}
         </div>
-        <button onClick={() => changeSlide("# Slide 2\n\nThis is the second slide content.")}>Next Slide</button>
+        {/* <button onClick={() => changeSlide("# Slide 2\n\nThis is the second slide content.")}>Next Slide</button> */}
       </div>
       <div className="markdown-view">
         <MdEditor style={{ height: '100vh' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
