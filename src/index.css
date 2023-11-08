@@ -1,16 +1,39 @@
-html {
-  padding: .5rem;
+html, body {
+  overflow-y:hidden;
+  margin: 1rem;
 }
 
 body {
-  padding: 0.5rem 0;
-  font-family: sans-serif;
+  overflow: hidden;
+  font-family: 'STIX Two Text', sans-serif;
+}
+
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2rem;
+}
+
+.legend h2 {
+  font-weight: 500;
+  display: inline-block;
+  padding: 10px 15px 10px 0;
+  margin: 5px 0;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.legend .title {
+  border-bottom: 1px solid #e8e8e8;
+  border-top: none;
 }
 
 .slide-view {
-  align-items: center;
+  display: flex;
+  align-items: top;
   justify-content: center;
-  height: 90vh;
   color: black;
   font-size: calc(10px + 2vmin);
   text-align: left;
@@ -18,8 +41,11 @@ body {
   margin-top: 4rem;
 }
 
+.App .rc-md-editor .editor-container {
+  background-color: transparent;
+}
+
 .legend {
-  height: 100%;
   width: 20%;
   display: inline-block;
   font-size: 12px;
@@ -32,6 +58,7 @@ body {
   gap: .5rem; /* Gap between grid items */
   margin: 0 auto; /* Center the grid on the page */
   font-size: 10px;
+  width: 40%;
 }
 
 .App .rc-md-editor .rc-md-navigation {
@@ -39,8 +66,11 @@ body {
 }
 
 .App .rc-md-editor .editor-container .sec-md .input {
-  padding: 1rem;
+  padding: 1.5rem;
   font-size: 16px;
+  background-color: #f6f6f6;
+  height: 90vh;
+  border-radius: 16px;
 }
 
 .rc-md-editor .drop-wrap {
@@ -49,17 +79,6 @@ body {
 
 .App {
   display: flex;
-}
-
-.logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 1rem;
-}
-
-section.section.sec-html.visible {
-  display: none;
 }
 
 .markdown-view {

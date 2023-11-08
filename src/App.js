@@ -1,59 +1,67 @@
-import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import gfm from 'remark-gfm';
-import MarkdownIt from 'markdown-it';
-import MdEditor, { Plugins } from 'react-markdown-editor-lite';
-import 'react-markdown-editor-lite/lib/index.css';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import gfm from 'remark-gfm'
+import MarkdownIt from 'markdown-it'
+import MdEditor, { Plugins } from 'react-markdown-editor-lite'
+import 'react-markdown-editor-lite/lib/index.css'
+import logo from './logo.svg'
+import { instructions } from './instructions.js'
 
 // Initialize a markdown parser
-const mdParser = new MarkdownIt(/* Markdown-it options */);
+const mdParser = new MarkdownIt(/* Markdown-it options */)
 
 // Remove options from editor 
-MdEditor.unuse(Plugins.FullScreen); // header
-MdEditor.unuse(Plugins.ModeToggle); // mode toggle
+MdEditor.unuse(Plugins.FullScreen) // full screen
+MdEditor.unuse(Plugins.ModeToggle) // mode toggle
+
+console.log(instructions)
 
 function App() {
+
+  // useEffect(() => {
+  //   document.getElementsByTagName('textarea')[0].value = 'hello';
+  // })
   
-  // const [markdown, setMarkdown] = useState();
+  // const [markdown, setMarkdown] = useState()
   const [slides, setSlides] = useState([])
   const [legend, setLegend] = useState([])
-  // const [currentSlide, setCurrentSlide] = useState(0)
 
   // Accessing the contents of the `slides` state variable
-  const currentSlides = slides;
+  const currentSlides = slides
 
   // Accessing the contents of the `legend` state variable
-  const currentLegend = legend;
+  const currentLegend = legend
 
   
   function handleEditorChange({ text }) {
     // Split the markdown text by lines
-    const lines = text.split('\n');
-    const legend = [];
-    const sections = [];
-    let currentSection = [];
+    const lines = text.split('\n')
+    const legend = []
+    const sections = []
+    let currentSection = []
     
     lines.forEach((line, index) => {
-      if (line.startsWith('## ') && currentSection.length > 0) {
+      if (line.startsWith('## ')) {
         legend.push(line)
-        // When a new H2 heading is found, push the title to the legend, then join the current section lines and push to sections
-        sections.push(currentSection.join('\n'));
-        // Reset the current section
-        currentSection = [line];
+        if(currentSection.length > 0) {
+          // When a new H2 heading is found, push the title to the legend, then join the current section lines and push to sections
+          sections.push(currentSection.join('\n'))
+          // Reset the current section
+          currentSection = [line]
+        }
       } else {
         // Otherwise, add the line to the current section
-        currentSection.push(line);
+        currentSection.push(line)
       }
       
       // If it's the last line, add the remaining content as a section
       if (index === lines.length - 1) {
-        sections.push(currentSection.join('\n'));
+        sections.push(currentSection.join('\n'))
       }
     });
   
-    console.log("sections: " + sections);
-    console.log("legend: " + legend);
+    console.log("sections: " + sections)
+    console.log("legend: " + legend)
     setSlides(sections)
     setLegend(legend)
   }
@@ -74,7 +82,7 @@ function App() {
           </div>
       </div>
       <div className="markdown-view">
-        <MdEditor style={{ height: '100vh' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} enablePreview={false} />
+        <MdEditor id="editor" style={{ height: '100%' }} renderHTML={text => mdParser.render(text)} placeholder={instructions} view={{ menu: true, md: true, html: false }} onChange={handleEditorChange} />
       </div>
     </div>
   );
