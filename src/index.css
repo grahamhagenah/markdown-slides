@@ -1,28 +1,46 @@
-body, html {
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
+html {
+  padding: .5rem;
+}
+
+body {
+  padding: 0.5rem 0;
   font-family: sans-serif;
 }
 
 .slide-view {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
   color: black;
   font-size: calc(10px + 2vmin);
-  text-align: center;
-  width: 50%;
+  text-align: left;
+  width: 60%;
+  margin-top: 4rem;
+}
+
+.legend {
+  height: 100%;
+  width: 20%;
+  display: inline-block;
+  font-size: 12px;
 }
 
 .slides {
-  display: grid;
+  display: inline-block;
+  /* display: grid; */
   grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
   gap: .5rem; /* Gap between grid items */
   margin: 0 auto; /* Center the grid on the page */
   font-size: 10px;
+}
+
+.App .rc-md-editor .rc-md-navigation {
+  justify-content: left;
+}
+
+.App .rc-md-editor .editor-container .sec-md .input {
+  padding: 1rem;
+  font-size: 16px;
 }
 
 .rc-md-editor .drop-wrap {
@@ -33,8 +51,19 @@ body, html {
   display: flex;
 }
 
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1rem;
+}
+
+section.section.sec-html.visible {
+  display: none;
+}
+
 .markdown-view {
-  width: 50%;
+  width: 40%;
 }
 
 .App .rc-md-editor .rc-md-navigation {
@@ -43,7 +72,11 @@ body, html {
 }
 
 .markdown-view .rc-md-editor {
-  border-left: 1px solid rgb(221, 221, 221);
+  border: none;
+}
+
+.App .rc-md-editor .rc-md-navigation .button-wrap .button {
+  color: #000000;
 }
 
 .markdown-view .rc-md-editor .editor-container>.section {
@@ -52,10 +85,6 @@ body, html {
 
 .markdown-view .sec-html {
   border-left: 1px solid rgb(221, 221, 221);
-}
-
-.rc-md-editor .editor-container {
-  border-top: 1px solid rgb(221, 221, 221);
 }
 
 /* Basic slide styling */
