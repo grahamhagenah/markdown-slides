@@ -46,7 +46,7 @@ function App() {
         currentSection = [line]
         console.log("before" + sections)
         // First encounter, likely an H1 with no content in currentSection
-      } else if (((line.startsWith('# ') || line.startsWith('## ')) && (currentSection.length == 0))) {
+      } else if (((line.startsWith('# ') || line.startsWith('## ')) && (currentSection.length === 0))) {
         legend.push(line)
         currentSection = [line]
       }
@@ -62,10 +62,6 @@ function App() {
 
     setSlides(sections)
     setLegend(legend)
-  }
-
-  function changeSlide(index) {
-    setCurrent(index)
   }
   
   return (
