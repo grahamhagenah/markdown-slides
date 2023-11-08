@@ -11,7 +11,7 @@ const mdParser = new MarkdownIt(/* Markdown-it options */);
 function App() {
   // const [markdown, setMarkdown] = useState();
   const [slides, setSlides] = useState([])
-  const [currentSlide, setCurrentSlide] = useState(0)
+  // const [currentSlide, setCurrentSlide] = useState(0)
 
    // Accessing the contents of the `slides` state variable
   const currentSlides = slides;
