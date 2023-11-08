@@ -30,6 +30,12 @@ body {
   border-top: none;
 }
 
+.title:hover h2,
+.title:hover h1 {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .slide-view {
   display: flex;
   align-items: top;
@@ -37,8 +43,7 @@ body {
   color: black;
   font-size: calc(10px + 2vmin);
   text-align: left;
-  width: 60%;
-  margin-top: 4rem;
+  width: 65%;
 }
 
 .App .rc-md-editor .editor-container {
@@ -46,19 +51,10 @@ body {
 }
 
 .legend {
-  width: 20%;
   display: inline-block;
   font-size: 12px;
-}
-
-.slides {
-  display: inline-block;
-  /* display: grid; */
-  grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
-  gap: .5rem; /* Gap between grid items */
-  margin: 0 auto; /* Center the grid on the page */
-  font-size: 10px;
-  width: 40%;
+  min-width: 275px;
+  margin-top: 5rem;
 }
 
 .App .rc-md-editor .rc-md-navigation {
@@ -70,7 +66,7 @@ body {
   font-size: 16px;
   background-color: #f6f6f6;
   height: 90vh;
-  border-radius: 16px;
+  border-radius: 10px;
 }
 
 .rc-md-editor .drop-wrap {
@@ -81,8 +77,34 @@ body {
   display: flex;
 }
 
+.title h1::before,
+.title h2::before{
+  content: '';
+  color: #131313;
+  text-align: center;
+  background-color: #f6f6f6;
+  padding: 7px;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.title h2::before {
+  content: 'H2';
+  font-size: 15px;
+}
+
+.title h1::before {
+  content: 'H1';
+  font-size: 17px;
+}
+
 .markdown-view {
-  width: 40%;
+  width: 35%;
 }
 
 .App .rc-md-editor .rc-md-navigation {
@@ -106,10 +128,24 @@ body {
   border-left: 1px solid rgb(221, 221, 221);
 }
 
-/* Basic slide styling */
 .slide {
-  padding: 20px;
-  border: 1px solid #ccc;
   margin: 10px;
   border-radius: 5px;
+  width: 100%;
+  margin-top: 38px;
+  padding: 3rem 8rem;
+  font-size: 16px;
+  height: 50vh;
+  border-radius: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide h1 {
+  font-size: 3rem;
+}
+
+.slide h2 {
+  font-size: 2rem;
 }
