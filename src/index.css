@@ -17,8 +17,12 @@ body, html {
   width: 50%;
 }
 
-.slide {
-  display: block;
+.slides {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
+  gap: .5rem; /* Gap between grid items */
+  margin: 0 auto; /* Center the grid on the page */
+  font-size: 10px;
 }
 
 .rc-md-editor .drop-wrap {

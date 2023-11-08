@@ -54,10 +54,11 @@ function App() {
   return (
     <div className="App">
       <div className="slide-view">
-       
-        {currentSlides.map((slide, index) => (
-          <ReactMarkdown className="slide" key={index} remarkPlugins={[gfm]} children={slide}/>
-        ))}
+       <div className="slides">
+          {currentSlides.map((slide, index) => (
+            <ReactMarkdown className="slide" key={index} remarkPlugins={[gfm]} children={slide}/>
+          ))}
+        </div>
         <button onClick={() => changeSlide("# Slide 2\n\nThis is the second slide content.")}>Next Slide</button>
       </div>
       <div className="markdown-view">
