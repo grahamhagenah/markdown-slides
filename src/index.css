@@ -1,13 +1,63 @@
-body {
+body, html {
+  overflow: hidden;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.slide-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: black;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+  width: 50%;
+}
+
+.slide {
+  display: block;
+}
+
+.rc-md-editor .drop-wrap {
+  border-radius: 8px;
+}
+
+.App {
+  display: flex;
+}
+
+.markdown-view {
+  width: 50%;
+}
+
+.App .rc-md-editor .rc-md-navigation {
+  background: #ffffff;
+  border: none;
+}
+
+.markdown-view .rc-md-editor {
+  border-left: 1px solid rgb(221, 221, 221);
+}
+
+.markdown-view .rc-md-editor .editor-container>.section {
+  border-right: none;
+}
+
+.markdown-view .sec-html {
+  border-left: 1px solid rgb(221, 221, 221);
+}
+
+.rc-md-editor .editor-container {
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+/* Basic slide styling */
+.slide {
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 10px;
+  border-radius: 5px;
 }
