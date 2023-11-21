@@ -7,6 +7,7 @@ import 'react-markdown-editor-lite/lib/index.css'
 import logo from './logo.svg'
 import { instructions } from './instructions.js'
 import classNames from 'classnames/bind';
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -16,6 +17,8 @@ MdEditor.unuse(Plugins.FullScreen) // full screen
 MdEditor.unuse(Plugins.ModeToggle) // mode toggle
 
 const App = () => {
+
+  const handle = useFullScreenHandle();
   
   const [slides, setSlides] = useState([])
   const [beforeEditSlides, setbeforeEditSlides] = useState([])
@@ -85,18 +88,30 @@ const App = () => {
     setCurrent(findChangedIndex(beforeEdit, currentSlides))
   }
 
+  function enterFullScreen() {
+    const element = document.getElementById("presentation-area") // Get the root HTML element
+  
+    if (element.requestFullscreen) {
+      element.requestFullscreen(); // Request full-screen mode
+    }
+  }
+
+
   return (
     <div className="App">
       <img src={logo} className="logo" alt="Logo" />
       <div className="slide-view">
         <div className="legend">
           {currentLegend.map((title, index) => (
-             <div id={'slide-' + index} className="title-container" onClick={() => setCurrent(index)} >
+             <div key={'slide-' + index} className="title-container" onClick={() => setCurrent(index)} >
                 <ReactMarkdown className={(currentSlide == index) ? ('current-slide title')  : 'title'}  key={index} remarkPlugins={[gfm]} children={title} />
               </div>
             ))}
         </div>
-        <ReactMarkdown className="slide" remarkPlugins={[gfm]} children={currentSlides[currentSlide]} />
+        <FullScreen handle={handle}>
+          <ReactMarkdown id="presentation-area" className="slide" remarkPlugins={[gfm]} children={currentSlides[currentSlide]} />
+        </FullScreen>
+        <button className="fullscreen-toggle" onClick={handle.enter}>Enter fullscreen</button>
       </div>
       <div className="markdown-view">
         <MdEditor id="editor" style={{ height: '100%' }}  view={{ menu: true, md: true, html: false }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />

@@ -25,6 +25,24 @@ body {
   line-height: 1.5;
 }
 
+.fullscreen-enabled  {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.fullscreen-enabled .slide {
+  height: 100%;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fullscreen-toggle {
+  display: block;
+  position: absolute;
+}
+
 .legend .title {
   border-bottom: 1px solid #e8e8e8;
   border-top: none;
@@ -41,6 +59,21 @@ body {
 .title:hover h1 {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.fullscreen {
+  display: inline-block;
+  margin: 10px;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 38px;
+  padding: 3rem 8rem;
+  font-size: 16px;
+  height: 50vh;
+  border-radius: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .slide-view {
@@ -133,20 +166,6 @@ body {
 
 .markdown-view .sec-html {
   border-left: 1px solid rgb(221, 221, 221);
-}
-
-.slide {
-  margin: 10px;
-  border-radius: 5px;
-  width: 100%;
-  margin-top: 38px;
-  padding: 3rem 8rem;
-  font-size: 16px;
-  height: 50vh;
-  border-radius: 16px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
 }
 
 .slide h1 {
