@@ -28,6 +28,13 @@ body {
 .legend .title {
   border-bottom: 1px solid #e8e8e8;
   border-top: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.current-slide h2 {
+  text-decoration: underline;
 }
 
 .title:hover h2,
