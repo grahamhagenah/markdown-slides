@@ -31,7 +31,6 @@ const App = () => {
   const currentSlides = slides
   const beforeEdit = beforeEditSlides
   const currentLegend = legend
-
   
   function findChangedIndex(before, after) {
     // Check if the arrays are of different lengths
@@ -96,7 +95,6 @@ const App = () => {
     }
   }
 
-
   return (
     <div className="App">
       <img src={logo} className="logo" alt="Logo" />
@@ -110,8 +108,12 @@ const App = () => {
         </div>
         <FullScreen handle={handle}>
           <ReactMarkdown id="presentation-area" className="slide" remarkPlugins={[gfm]} children={currentSlides[currentSlide]} />
+          <div className="controls">
+            <button className="fullscreen-toggle" onClick={handle.enter}>Enter fullscreen</button>
+            <button className="next-slide" onClick={() => (slides.length - 1 > current) && setCurrent(current + 1)}>Next</button>
+            <button className="previous-slide" onClick={() => (current > 0) && setCurrent(current - 1)}>Previous</button>
+          </div>
         </FullScreen>
-        <button className="fullscreen-toggle" onClick={handle.enter}>Enter fullscreen</button>
       </div>
       <div className="markdown-view">
         <MdEditor id="editor" style={{ height: '100%' }}  view={{ menu: true, md: true, html: false }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
