@@ -1,10 +1,10 @@
-export const instructions = `# Introducing Markdown Slides 
+export const instructions = `# Introducing *Markdown Slides*
 
-Markdown is a lightweight markup language that allows you to format plain text documents. It's easy to learn and widely used for creating documents and web pages. 
+Markdown is a lightweight markup language that allows you to format plain text documents. It is easy to learn and widely used for creating documents and web pages. 
 
 Now you can make **presentations** in markdown. This web application transforms the markup language into simple slide decks to draft, share, or present. 
 
-Read on to see how it works, or edit this document to try it yourself :‑)
+Make a small change in the *editor panel* to start making slides :‑)
 
 ## Creating New Slides
 

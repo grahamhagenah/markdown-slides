@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import MarkdownIt from 'markdown-it'
@@ -36,6 +36,12 @@ const App = () => {
   const currentSlides = slides
   const beforeEdit = beforeEditSlides
   const currentLegend = legend
+
+  useEffect(() => {
+    // ['# Edit the *markdown* to get started...'\n]
+    // sections.push(currentSection.join('\n'))
+    setSlides(['# Introducing *Markdown Slides* \n Markdown is a lightweight markup language that allows you to format plain text documents. \n It is easy to learn and widely used for creating documents and web pages. \n \n Now you can make **presentations** in markdown. This web application transforms the markup language into simple slide decks to draft, share, or present. \n \n Make a small change in the *editor panel* to start making slides :‑)'])
+  }, []);
   
   function findChangedIndex(before, after) {
     // Check if the arrays are of different lengths
@@ -52,7 +58,6 @@ const App = () => {
     // If the arrays are identical
     return -1 // Indicates that there are no changes
   }
-
 
   const handleEditorChange = ({text}) => {
 
