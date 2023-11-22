@@ -6,6 +6,7 @@ html, body {
 body {
   overflow: hidden;
   font-family: 'STIX Two Text', sans-serif;
+  font-size: 24px;
 }
 
 
@@ -33,15 +34,40 @@ body {
 
 .fullscreen-enabled .slide {
   height: 100%;
-  display: block;
+  display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0 25%;
 }
 
 .fullscreen-toggle {
   display: block;
   position: absolute;
 }
+
+/* Style for code blocks */
+pre {
+  background-color: #f5f5f5; /* Background color */
+  border: 1px solid #ccc; /* Border around the code block */
+  border-radius: 4px; /* Rounded corners */
+  padding: 10px; /* Padding inside the code block */
+  overflow-x: auto; /* Add horizontal scrollbar if needed */
+}
+
+/* Syntax highlighting for code */
+code {
+  font-family: 'Consolas', 'Monaco', monospace; /* Choose a monospace font */
+  color: #333; /* Text color */
+}
+
+/* Style for code block language label */
+pre code::before {
+  content: attr(data-lang); /* Display language label from "data-lang" attribute */
+  display: block;
+  color: #888;
+  margin-bottom: 10px;
+}
+
 
 .legend .title {
   border-bottom: 1px solid #e8e8e8;
@@ -67,13 +93,11 @@ body {
 }
 
 .fullscreen {
-  display: inline-block;
   margin: 10px;
   border-radius: 5px;
   width: 100%;
   margin-top: 38px;
   padding: 3rem 6rem 3rem 8rem;
-  font-size: 16px;
   height: 80vh;
   border-radius: 16px;
   text-align: left;
@@ -81,6 +105,11 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.fullscreen-enabled {
+  justify-content: center;
+}
+
 
 .slide p {
   font-size: 24px;
@@ -92,7 +121,6 @@ body {
   align-items: top;
   justify-content: center;
   color: black;
-  font-size: calc(10px + 2vmin);
   text-align: left;
   width: 65%;
 }
@@ -202,4 +230,9 @@ body {
 .slide h2 {
   font-size: 3rem;
   margin-top: 0;
+}
+
+li {
+  line-height: 1.5;
+  padding-bottom: 10px;
 }
