@@ -1,8 +1,8 @@
 export const instructions = `# Introducing Markdown Slides
 
-Markdown is a lightweight markup language that allows you to format plain text documents. It's easy to learn and widely used for creating documents, web pages, and README files. 
+Markdown is a lightweight markup language that allows you to format plain text documents. It's easy to learn and widely used for creating documents, web pages, and files. 
 
-Now you can draft simple presentations in markdown.
+Now you can make **presentations** in markdown.
 
 
 ## Creating New Slides

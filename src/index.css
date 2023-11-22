@@ -1,6 +1,5 @@
 html, body {
   overflow-y:hidden;
-  margin: 1rem;
 }
 
 body {
@@ -9,20 +8,54 @@ body {
   font-size: 24px;
 }
 
-
 .logo {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 2rem;
+  height: 40px;
+  width: 40px;
+  line-height: 1;
+  margin: 1rem;
+  background-color: black;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+}
+
+.title:hover {
+  cursor: pointer;
+}
+
+.title {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  height: 3.5rem;
+  box-shadow: rgba(9, 30, 66, 0.05) 0px 1px 1px, rgba(9, 30, 66, 0.10) 0px 0px 1px 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid white;
+}
+
+.current-slide  {
+  border: 3px solid black;
+}
+
+.title h1, .title h2 {
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; */
 }
 
 .legend h2, .legend h1 {
   font-weight: 500;
   display: inline-block;
-  padding: 10px 15px 10px 0;
+  padding: 5px;
   margin: 5px 0;
-  font-size: 19px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -37,7 +70,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 25%;
+  padding: 0 25% 5% 25%;
 }
 
 .fullscreen-toggle {
@@ -45,42 +78,14 @@ body {
   position: absolute;
 }
 
-/* Style for code blocks */
-pre {
-  background-color: #f5f5f5; /* Background color */
-  border: 1px solid #ccc; /* Border around the code block */
-  border-radius: 4px; /* Rounded corners */
-  padding: 10px; /* Padding inside the code block */
-  overflow-x: auto; /* Add horizontal scrollbar if needed */
-}
-
-/* Syntax highlighting for code */
-code {
-  font-family: 'Consolas', 'Monaco', monospace; /* Choose a monospace font */
-  color: #333; /* Text color */
-}
-
-/* Style for code block language label */
-pre code::before {
-  content: attr(data-lang); /* Display language label from "data-lang" attribute */
-  display: block;
-  color: #888;
-  margin-bottom: 10px;
-}
-
-
-.legend .title {
+/* .legend .title {
   border-bottom: 1px solid #e8e8e8;
   border-top: none;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   opacity: .5;
-}
-
-.legend .current-slide {
-  opacity: 1;
-}
+} */
 
 .current-slide h2 {
   text-decoration: underline;
@@ -96,8 +101,7 @@ pre code::before {
   margin: 10px;
   border-radius: 5px;
   width: 100%;
-  margin-top: 38px;
-  padding: 3rem 6rem 3rem 8rem;
+  padding: 5rem;
   height: 80vh;
   border-radius: 16px;
   text-align: left;
@@ -147,9 +151,10 @@ pre code::before {
 .legend {
   display: inline-block;
   font-size: 12px;
-  min-width: 275px;
   margin-top: 5rem;
+  max-width: 15%;
 }
+
 
 .App .rc-md-editor .rc-md-navigation {
   justify-content: left;
@@ -159,7 +164,7 @@ pre code::before {
   padding: 1.5rem;
   font-size: 16px;
   background-color: #f6f6f6;
-  height: 90vh;
+  height: 94vh;
   border-radius: 10px;
 }
 
@@ -169,32 +174,6 @@ pre code::before {
 
 .App {
   display: flex;
-}
-
-.title h1::before,
-.title h2::before{
-  content: '';
-  color: #131313;
-  text-align: center;
-  background-color: #f6f6f6;
-  padding: 7px;
-  margin-right: 10px;
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  border-radius: 5px;
-  font-weight: 700;
-}
-
-.title h2::before {
-  content: 'H2';
-  font-size: 15px;
-}
-
-.title h1::before {
-  content: 'H1';
-  font-size: 15px;
 }
 
 .markdown-view {

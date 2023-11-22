@@ -6,10 +6,10 @@ import MdEditor, { Plugins } from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 import logo from './logo.svg'
 import { instructions } from './instructions.js'
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import { FullScreen, useFullScreenHandle } from "react-full-screen"
 
 // Initialize a markdown parser
-const mdParser = new MarkdownIt(/* Markdown-it options */);
+const mdParser = new MarkdownIt(/* Markdown-it options */)
 
 // Remove options from editor 
 MdEditor.unuse(Plugins.FullScreen) // full screen
@@ -17,7 +17,7 @@ MdEditor.unuse(Plugins.ModeToggle) // mode toggle
 
 const App = () => {
 
-  const handle = useFullScreenHandle();
+  const handle = useFullScreenHandle()
   
   const [slides, setSlides] = useState([])
   const [markdown, setMarkdown] = useState(instructions)
@@ -35,17 +35,17 @@ const App = () => {
   function findChangedIndex(before, after) {
     // Check if the arrays are of different lengths
     if (before.length !== after.length) {
-      return 0; // Indicates that the arrays have different lengths
+      return 0 // Indicates that the arrays have different lengths
     }
   
     // Compare the elements of the arrays
     for (let i = 0; i < before.length; i++) {
       if (before[i] !== after[i]) {
-        return i; // Return the index of the first difference found
+        return i // Return the index of the first difference found
       }
     }
     // If the arrays are identical
-    return -1; // Indicates that there are no changes
+    return -1 // Indicates that there are no changes
   }
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const App = () => {
     console.clear()
     console.log("loaded")
 
-  });
+  })
 
   const handleEditorChange = ({text}) => {
 
@@ -88,20 +88,37 @@ const App = () => {
       if (index === lines.length - 1) {
         sections.push(currentSection.join('\n'))
       }
-    });
+    })
 
     setSlides(sections)
     setLegend(legend)
     setCurrent(findChangedIndex(beforeEdit, currentSlides))
   }
 
+  // Allow navigation by arrow keys
+  document.onkeydown = navigateSlides
+  
+  // getElementsByClassName('slide-view'[0])
+
+  function navigateSlides(e) {
+    if(document.activeElement !== document.getElementById('editor_md')) {
+      if (e.keyCode === '38' || e.keyCode === '37') {
+        return (current > 0) && setCurrent(current - 1)
+      }
+      else if (e.keyCode === '40' || e.keyCode === '39') {
+        return (slides.length - 1 > current) && setCurrent(current + 1)
+      }
+    }
+  }
+
   return (
     <div className="App">
       <img src={logo} className="logo" alt="Logo" />
+      {/* <h1 className="logo" alt="Markdown Slides">M</h1> */}
       <div className="slide-view">
         <div className="legend">
           {currentLegend.map((title, index) => (
-             <div key={'slide-' + index} className="title-container" onClick={() => setCurrent(index)} >
+             <div key={'slide-' + index} className="title-container" onClick={() => setCurrent(index)}>
                 <ReactMarkdown className={(currentSlide === index) ? ('current-slide title')  : 'title'}  key={index} remarkPlugins={[gfm]} children={title} />
               </div>
             ))}
@@ -119,8 +136,8 @@ const App = () => {
         <MdEditor id="editor" style={{ height: '100%' }}  view={{ menu: true, md: true, html: false }} value={inital} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 
