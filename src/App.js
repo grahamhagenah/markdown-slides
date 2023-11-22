@@ -7,11 +7,11 @@ import 'react-markdown-editor-lite/lib/index.css'
 import logo from './logo.svg'
 import { instructions } from './instructions.js'
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
-import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import IconButton from '@mui/material/IconButton';
-import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
+import FullscreenIcon from '@mui/icons-material/Fullscreen'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import IconButton from '@mui/material/IconButton'
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit'
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
@@ -53,12 +53,6 @@ const App = () => {
     return -1 // Indicates that there are no changes
   }
 
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   console.clear()
-  //   console.log("loaded")
-
-  // })
 
   const handleEditorChange = ({text}) => {
 
@@ -119,7 +113,6 @@ const App = () => {
   return (
     <div className="App">
       <img src={logo} className="logo" alt="Logo" />
-      {/* <h1 className="logo" alt="Markdown Slides">M</h1> */}
       <div className="slide-view">
         <div className="legend">
           {currentLegend.map((title, index) => (
@@ -129,7 +122,12 @@ const App = () => {
             ))}
         </div>
         <FullScreen handle={handle}>
-          <ReactMarkdown id="presentation-area" className="slide" remarkPlugins={[gfm]} children={currentSlides[currentSlide]} />
+          <div className="counter">
+            <p>{slides.length + " / " +  (currentSlide + 1)}</p>
+          </div>
+          <div className="slide">
+            <ReactMarkdown id="presentation-area" className="slide-content" remarkPlugins={[gfm]} children={currentSlides[currentSlide]} />
+          </div>
           <div className="controls">
             <IconButton aria-label="delete" size="large" className="previous-slide" onClick={() => (current > 0) && setCurrent(current - 1)}>
               <ArrowBackIcon/>

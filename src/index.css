@@ -81,16 +81,18 @@ button {
 
 .fullscreen-enabled  {
   background-color: white;
-  display: flex;
-  justify-content: center;
+}
+
+.fullscreen.fullscreen-enabled {
+  justify-content: space-between;
 }
 
 .fullscreen-enabled .slide {
-  height: 100%;
+  padding: 0 25% 5% 25%;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 25% 5% 25%;
 }
 
 .fullscreen-toggle {
@@ -205,10 +207,11 @@ button:hover {
   display: inline-block;
   font-size: 12px;
   margin-top: 5rem;
-  max-width: 15%;
+  width: 20%;
   height: 85vh;
   overflow-y: scroll;
 }
+
 
 .App .rc-md-editor .rc-md-navigation {
   justify-content: left;
@@ -239,12 +242,30 @@ button:hover {
   border: none;
 }
 
+.slide img {
+  width: 100%;
+}
+
 .fullscreen-enabled .fullscreen-exit {
   display: inline-block;
 }
 
 .fullscreen:not(.fullscreen-enabled) .fullscreen-exit {
   display: none;
+}
+
+.fullscreen:not(.fullscreen-enabled) .counter {
+  display: none;
+}
+
+.counter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 3rem;
+  line-height: 0;
+  opacity: .35;
+  font-size: 25px;
 }
 
 .fullscreen-enabled .fullscreen-enter {
