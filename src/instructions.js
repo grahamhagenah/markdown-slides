@@ -42,7 +42,19 @@ Display code using plain HTML. Just make sure to indent with four spaces.
       <head>
         <title>Title here</title>
       </head>
-      
+
+## Using Controls
+Enter a distraction-free *fullscreen* mode by using the toggle below. Navigate between slides using the arrows, or use the arrows on your keyboard.
+
+## Tabular Data
+Create a table from the menu above the editor.
+
+| Technology | Category | Primary Use | Description |
+|---------|-------|--------|------------|
+| HTML | Markup Language   | Structuring Websites  | The standard markup language for Web pages
+| CSS  | Style Sheet | Styling Websites  | Used for describing the look of Web pages
+| JavaScript | Programming Language | Interactive Elements | Enables interactive web pages
+
 ## How It's Built
 Markdown Slides is built using **React**, a front-end library for creating user-interfaces.
 

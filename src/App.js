@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import MarkdownIt from 'markdown-it'
@@ -7,6 +7,11 @@ import 'react-markdown-editor-lite/lib/index.css'
 import logo from './logo.svg'
 import { instructions } from './instructions.js'
 import { FullScreen, useFullScreenHandle } from "react-full-screen"
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import IconButton from '@mui/material/IconButton';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
@@ -48,12 +53,12 @@ const App = () => {
     return -1 // Indicates that there are no changes
   }
 
-  useEffect(() => {
-    // Update the document title using the browser API
-    console.clear()
-    console.log("loaded")
+  // useEffect(() => {
+  //   // Update the document title using the browser API
+  //   console.clear()
+  //   console.log("loaded")
 
-  })
+  // })
 
   const handleEditorChange = ({text}) => {
 
@@ -126,9 +131,18 @@ const App = () => {
         <FullScreen handle={handle}>
           <ReactMarkdown id="presentation-area" className="slide" remarkPlugins={[gfm]} children={currentSlides[currentSlide]} />
           <div className="controls">
-            <button className="fullscreen-toggle" onClick={handle.enter}>Enter fullscreen</button>
-            <button className="next-slide" onClick={() => (slides.length - 1 > current) && setCurrent(current + 1)}>Next</button>
-            <button className="previous-slide" onClick={() => (current > 0) && setCurrent(current - 1)}>Previous</button>
+            <IconButton aria-label="delete" size="large" className="previous-slide" onClick={() => (current > 0) && setCurrent(current - 1)}>
+              <ArrowBackIcon/>
+            </IconButton>
+            <IconButton className="fullscreen-enter" onClick={handle.enter}>
+              <FullscreenIcon />
+            </IconButton>
+            <IconButton className="fullscreen-exit" onClick={handle.exit}>
+              <FullscreenExitIcon />
+            </IconButton>
+            <IconButton aria-label="delete" size="large" className="next-slide" onClick={() => (slides.length - 1 > current) && setCurrent(current + 1)}>
+              <ArrowForwardIcon/>
+            </IconButton>
           </div>
         </FullScreen>
       </div>
