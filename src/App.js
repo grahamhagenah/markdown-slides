@@ -102,10 +102,10 @@ const App = () => {
 
   function navigateSlides(e) {
     if(document.activeElement !== document.getElementById('editor_md')) {
-      if (e.keyCode === '38' || e.keyCode === '37') {
+      if (e.keyCode == '38' || e.keyCode == '37') {
         return (current > 0) && setCurrent(current - 1)
       }
-      else if (e.keyCode === '40' || e.keyCode === '39') {
+      else if (e.keyCode == '40' || e.keyCode == '39') {
         return (slides.length - 1 > current) && setCurrent(current + 1)
       }
     }
