@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import MarkdownIt from 'markdown-it'
 import MdEditor, { Plugins } from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 import logo from './logo.svg'
-// import { instructions } from './instructions.js'
+import { instructions } from './instructions.js'
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 // Initialize a markdown parser
@@ -20,13 +20,14 @@ const App = () => {
   const handle = useFullScreenHandle();
   
   const [slides, setSlides] = useState([])
+  const [markdown, setMarkdown] = useState(instructions)
   const [beforeEditSlides, setbeforeEditSlides] = useState([])
-  // const [inputValue, setInputValue] = useState("example value")
   const [current, setCurrent] = useState([0])
   const [legend, setLegend] = useState([])
 
   // Accessing the contents of the state variables
   const currentSlide = current
+  const inital = markdown
   const currentSlides = slides
   const beforeEdit = beforeEditSlides
   const currentLegend = legend
@@ -34,7 +35,7 @@ const App = () => {
   function findChangedIndex(before, after) {
     // Check if the arrays are of different lengths
     if (before.length !== after.length) {
-      return -1; // Indicates that the arrays have different lengths
+      return 0; // Indicates that the arrays have different lengths
     }
   
     // Compare the elements of the arrays
@@ -47,8 +48,16 @@ const App = () => {
     return -1; // Indicates that there are no changes
   }
 
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.clear()
+    console.log("loaded")
 
-  function handleEditorChange({ text }) {
+  });
+
+  const handleEditorChange = ({text}) => {
+
+    setMarkdown(text)
 
     // Captures state of current slides for later comparison
     setbeforeEditSlides(currentSlides)
@@ -107,7 +116,7 @@ const App = () => {
         </FullScreen>
       </div>
       <div className="markdown-view">
-        <MdEditor id="editor" style={{ height: '100%' }}  view={{ menu: true, md: true, html: false }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+        <MdEditor id="editor" style={{ height: '100%' }}  view={{ menu: true, md: true, html: false }} value={inital} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
       </div>
     </div>
   );
