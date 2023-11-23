@@ -38,10 +38,9 @@ const App = () => {
   const currentLegend = legend
 
   useEffect(() => {
-    // ['# Edit the *markdown* to get started...'\n]
-    // sections.push(currentSection.join('\n'))
-    setSlides(['# Introducing *Markdown Slides* \n Markdown is a lightweight markup language that allows you to format plain text documents. \n It is easy to learn and widely used for creating documents and web pages. \n \n Now you can make **presentations** in markdown. This web application transforms the markup language into simple slide decks to draft, share, or present. \n \n Make a small change in the *editor panel* to start making slides :‑)'])
-  }, []);
+
+    setUpDemo(instructions)
+ }, []);
   
   function findChangedIndex(before, after) {
     // Check if the arrays are of different lengths
@@ -59,6 +58,46 @@ const App = () => {
     return -1 // Indicates that there are no changes
   }
 
+  const setUpDemo = (text) => {
+
+    setMarkdown(text)
+
+    // Captures state of current slides for later comparison
+    setbeforeEditSlides(currentSlides)
+
+    // Split the markdown text by lines
+    const lines = text.split('\n')
+    let legend = []
+    let sections = []
+    let currentSection = []
+
+    lines.forEach((line, index) => {
+      if (((line.startsWith('# ') || line.startsWith('## ')) && (currentSection.length > 0))) {
+        legend.push(line)
+        // When a new H2 heading is found, join the current section lines and push to sections
+        sections.push(currentSection.join('\n'))
+        // Reset the current section
+        currentSection = [line]
+        // First encounter, likely an H1 with no content in currentSection
+      } else if (((line.startsWith('# ') || line.startsWith('## ')) && (currentSection.length === 0))) {
+        legend.push(line)
+        currentSection = [line]
+      }
+      else {
+        // Otherwise, add the line to the current section
+        currentSection.push(line)
+      }
+      // If it's the last line, add the remaining content as a section
+      if (index === lines.length - 1) {
+        sections.push(currentSection.join('\n'))
+      }
+    })
+
+    setSlides(sections)
+    setLegend(legend)
+    setCurrent(0)
+  }
+
   const handleEditorChange = ({text}) => {
 
     setMarkdown(text)
@@ -67,7 +106,7 @@ const App = () => {
     setbeforeEditSlides(currentSlides)
 
     // Split the markdown text by lines
-    let lines = text.split('\n')
+    const lines = text.split('\n')
     let legend = []
     let sections = []
     let currentSection = []
