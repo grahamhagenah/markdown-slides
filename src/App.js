@@ -39,8 +39,8 @@ const App = () => {
  
   useEffect(() => {
 
-    setUpDemo(initial)
-    
+    setUpDemo(instructions)
+
  }, []);
   
   function findChangedIndex(before, after) {
