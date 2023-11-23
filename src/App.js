@@ -32,7 +32,7 @@ const App = () => {
 
   // Accessing the contents of the state variables
   const currentSlide = current
-  const inital = markdown
+  let initial = markdown
   const currentSlides = slides
   const beforeEdit = beforeEditSlides
   const currentLegend = legend
@@ -67,9 +67,9 @@ const App = () => {
     setbeforeEditSlides(currentSlides)
 
     // Split the markdown text by lines
-    const lines = text.split('\n')
-    const legend = []
-    const sections = []
+    let lines = text.split('\n')
+    let legend = []
+    let sections = []
     let currentSection = []
 
     lines.forEach((line, index) => {
@@ -101,8 +101,6 @@ const App = () => {
 
   // Allow navigation by arrow keys
   document.onkeydown = navigateSlides
-  
-  // getElementsByClassName('slide-view'[0])
 
   function navigateSlides(e) {
     if(document.activeElement !== document.getElementById('editor_md')) {
@@ -150,7 +148,7 @@ const App = () => {
         </FullScreen>
       </div>
       <div className="markdown-view">
-        <MdEditor id="editor" style={{ height: '100%' }}  view={{ menu: true, md: true, html: false }} value={inital} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+        <MdEditor id="editor" style={{ height: '100%' }}  view={{ menu: true, md: true, html: false }} value={initial} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
       </div>
     </div>
   )
