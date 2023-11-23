@@ -59,7 +59,7 @@ const App = () => {
     return -1 // Indicates that there are no changes
   }
 
-  const setUpDemo = (text) => {
+  function setUpDemo (text) {
 
     setMarkdown(text)
 
