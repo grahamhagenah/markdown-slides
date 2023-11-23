@@ -33,7 +33,9 @@
       "react-app/jest"
     ],
     "rules": {
-      "eqeqeq": "off"
+      "eqeqeq": "off",
+      "eslint-disable-next-line": "off",
+      "no-useless-concat": "off"
     }
   },
   "browserslist": {

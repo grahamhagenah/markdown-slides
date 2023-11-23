@@ -36,10 +36,11 @@ const App = () => {
   const currentSlides = slides
   const beforeEdit = beforeEditSlides
   const currentLegend = legend
-
+ 
   useEffect(() => {
 
-    setUpDemo(instructions)
+    setUpDemo(initial)
+    
  }, []);
   
   function findChangedIndex(before, after) {
