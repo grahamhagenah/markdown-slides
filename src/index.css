@@ -178,6 +178,10 @@ button {
   padding-right: 5rem;
 }
 
+table {
+  width: 100%;
+}
+
 table thead {
   background-color: #f6f6f6;
 }

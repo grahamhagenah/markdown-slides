@@ -1,14 +1,10 @@
 export const instructions =  
-"# Introducing *Markdown Slides*" +
-"\n" + "\n" +
-"Markdown is a lightweight markup language that allows you to format plain text documents. It is easy to learn and widely used for creating documents and web pages." +
-"\n" + "\n" +
-"Now you can make **presentations** in markdown. This web application transforms the markup language into simple slide decks to draft, share, or present." +
-"\n" + "\n" +
-"Read on to learn more or start making slides in the markdown editor :‑)" +
-"\n" + "\n" +
+"# Introducing *Markdown Slides*\n\n" +
+"Markdown is a lightweight markup language that allows you to format plain text documents. It is easy to learn and widely used for creating documents and web pages.\n\n" +
+"Now you can make **presentations** in markdown. This web application transforms the markup language into simple slide decks to draft, share, or present.\n\n" +
+"Read on to learn more or start making slides in the markdown editor :‑)\n\n" +
 "## Creating New Slides" +
-"\n" + "\n" +
+"\n\n" +
 "The H1 and H2 tags mark the beginning of new slides. Each heading is denoted by hashtags (#) to establish hierarchy in the document." +
 "\n" + "\n" +
 "Type in the hashtags manually or use the formatting menu to create new headings." +
@@ -40,14 +36,6 @@ export const instructions =
 "- Item A" + "\n" +
 "- Item B" + "\n" +
 "- Item C" + "\n" +
-"## Writing Code" + 
-"\n" + "\n" +
-"Display code using plain HTML. Just make sure to indent with four spaces." +
-"\n" +
-    "<html>" + "\n" +
-      "<head>" + "\n" +
-       "<title>Title here</title>" + "\n" +
-      "</head>" + 
 "\n" + "\n" +
 "## Using Controls" +
 "\n" + "\n" +
@@ -65,6 +53,10 @@ export const instructions =
 "| Rainbows End  | Vernor Vinge | 2007" + "\n" +
 "| Spin  | Robert Charles Wilson | 2006" + "\n" +
 "| Speaker for the Dead | Orson Scott Card | 1987" + "\n" +
+"\n" + "\n" +
+"## Writing Code" +
+"\n" +
+"Use the `printf()` function." + 
 "\n" + "\n" +
 "## How It's Built" +
 "\n" + "\n" + 
