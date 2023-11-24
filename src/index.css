@@ -1,26 +1,29 @@
-html, body {
-  overflow-y:hidden;
-}
-
 body {
   overflow: hidden;
   font-family: 'STIX Two Text', sans-serif;
   font-size: 24px;
+  --primary: #fafafa;
+}
+
+main {
+  display: flex;
+  height: 95vh;
 }
 
 .logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 40px;
-  width: 40px;
-  line-height: 1;
+  height: 35px;
+  width: 35px;
   margin: 1rem;
-  background-color: black;
-  padding: 5px;
-  text-align: center;
-  color: white;
-  border-radius: 10px;
+}
+
+nav ol {
+  padding: 0;
+  list-style: none;
+  margin-top: 0;
+}
+
+nav  li {
+  margin: 0.75rem 0;
 }
 
 .title:hover {
@@ -49,28 +52,25 @@ button {
 
 .title {
   padding: 10px;
-  margin: 10px 1rem 10px 10px;
+  margin: 0 1rem 0 10px;
   border-radius: 10px;
   height: 3.5rem;
-  box-shadow: rgba(9, 30, 66, 0.05) 0px 1px 1px, rgba(9, 30, 66, 0.10) 0px 0px 1px 1px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 3px solid white;
+  align-items: center;
+  border: 3px solid rgb(224, 224, 224);
+  overflow: hidden;
+}
+
+.slide-content {
+  margin-top: 3rem;
 }
 
 .current-slide  {
   border: 3px solid black;
 }
 
-.title h1, .title h2 {
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 150px; */
-}
-
-.legend h2, .legend h1 {
+nav h2, 
+nav h1 {
   font-weight: 500;
   display: inline-block;
   padding: 5px;
@@ -96,19 +96,39 @@ button {
   height: 100%;
 }
 
+.fullscreen-enabled #controls {
+  position: absolute;
+  bottom: 0;
+  margin: 3rem;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  background-color: transparent;
+}
+
+#controls {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+  border-radius: 50px;
+  background-color: var(--primary);
+  margin-top: 1rem;
+}
+
+#controls button {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  line-height: 0;
+}
+
 .fullscreen-toggle {
   display: block;
   position: absolute;
 }
-
-/* .legend .title {
-  border-bottom: 1px solid #e8e8e8;
-  border-top: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  opacity: .5;
-} */
 
 .current-slide h2 {
   text-decoration: underline;
@@ -121,17 +141,17 @@ button {
 }
 
 .fullscreen {
-  margin: 10px;
+  margin-top: 10px;
   border-radius: 5px;
   width: 100%;
-  padding: 5rem;
-  height: 85vh;
+  padding: 0 5rem;
   border-radius: 16px;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow-y: scroll
+  overflow-y: scroll;
+  padding-bottom: 0;
 }
 
 .slide blockquote {
@@ -149,6 +169,19 @@ button {
   justify-content: center;
 }
 
+/* .fullscreen.fullscreen-enabled {
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0 5rem;
+  border-radius: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
+  transition: all .25s linear;
+} */
 
 .slide p {
   font-size: 24px;
@@ -162,20 +195,7 @@ button {
   color: black;
   text-align: left;
   width: 65%;
-}
-
-.presentation-view {
-  display: inline-block;
-}
-
-.controls {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  width: 400px;
-  margin: 0 auto;
-  padding-right: 5rem;
+  height: 100%;
 }
 
 table {
@@ -194,56 +214,33 @@ table th, table td {
   padding: 0.5rem 1rem;
 }
 
-.controls button {
-  position: relative;
-  width: 3rem;
-  height: 3rem;
-  line-height: 0;
-}
-
 button:hover {
   cursor: pointer;
 }
 
-.App .rc-md-editor .editor-container {
+main .rc-md-editor .editor-container {
   background-color: transparent;
 }
 
-.legend {
-  display: inline-block;
-  font-size: 12px;
-  margin-top: 5rem;
-  width: 25%;
-  height: 85vh;
+nav {
   overflow-y: scroll;
 }
 
-
-.App .rc-md-editor .rc-md-navigation {
-  justify-content: left;
-}
-
-.App .rc-md-editor .editor-container .sec-md .input {
+#editor_md {
   padding: 1.5rem;
   font-size: 16px;
-  background-color: #f6f6f6;
-  height: 94vh;
+  background-color: var(--primary);
   border-radius: 10px;
-}
-
-.rc-md-editor .drop-wrap {
-  border-radius: 8px;
-}
-
-.App {
-  display: flex;
+  height: calc(100% - 4rem);
+  border: none;
+  height: 85vh;
 }
 
 .markdown-view {
   width: 35%;
 }
 
-.App .rc-md-editor .rc-md-navigation {
+main .rc-md-editor .rc-md-navigation {
   background: #ffffff;
   border: none;
 }
@@ -252,64 +249,97 @@ button:hover {
   width: 100%;
 }
 
-.fullscreen-enabled .fullscreen-exit {
+.fullscreen-enabled .fullscreen-exit,
+.fullscreen:not(.fullscreen-enabled) .fullscreen-enter {
   display: inline-block;
 }
 
-.fullscreen:not(.fullscreen-enabled) .fullscreen-exit {
-  display: none;
-}
-
-.fullscreen:not(.fullscreen-enabled) .counter {
+.fullscreen:not(.fullscreen-enabled) .fullscreen-exit,
+.fullscreen:not(.fullscreen-enabled) .counter,
+.fullscreen-enabled .fullscreen-enter {
   display: none;
 }
 
 .counter {
   position: absolute;
-  top: 0;
-  left: 0;
   margin: 3rem;
   line-height: 0;
   opacity: .35;
   font-size: 25px;
+  top: 0;
+  left: 3rem; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  background-color: transparent;
 }
 
-.fullscreen-enabled .fullscreen-enter {
-  display: none;
-}
-
-.fullscreen:not(.fullscreen-enabled) .fullscreen-enter {
-  display: inline-block;
-}
-
-
-.markdown-view .rc-md-editor {
+.markdown-view .rc-md-editor,
+.rc-md-editor .editor-container .sec-md {
   border: none;
 }
 
-.App .rc-md-editor .rc-md-navigation .button-wrap .button {
-  color: #000000;
-}
-
-.markdown-view .rc-md-editor .editor-container>.section {
-  border-right: none;
-}
-
-.markdown-view .sec-html {
-  border-left: 1px solid rgb(221, 221, 221);
-}
-
-.slide h1 {
-  font-size: 3.25rem;
-  margin-top: 0;
-}
-
-.slide h2 {
-  font-size: 3rem;
-  margin-top: 0;
-}
-
-li {
+.slide li {
   line-height: 1.5;
-  padding-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .fullscreen {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .title {
+    margin: 0;
+  }
+
+  li {
+    padding-bottom: 0;
+  }
+
+  body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .slide-view {
+    display: block;
+    margin: 0;
+    width: 100%;
+  }
+
+  main .rc-md-editor .editor-container .sec-md .input {
+    height: auto;
+    min-height: 50vh;
+  }
+
+  nav ol {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #controls {
+    width: 100%;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  .markdown-view {
+    width: 100%;
+    display: block;
+  }
+
+  main {
+    display: block;
+    height: 100%;
+  }
 }

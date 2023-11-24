@@ -89,7 +89,9 @@ let demo = "# Introducing *Markdown Slides*\n\n" +
 "\n" + "\n" + 
 "If you have questions or suggestions, [contact me](https://grahamhagenah.com/about/). I'm open to work."
 
-  const handle = useFullScreenHandle()
+
+  const handle = useFullScreenHandle() // Enable fullscreen options
+  document.onkeydown = navigateSlides  // Allow navigation by arrow keys
   
   const [slides, setSlides] = useState([])
   const [markdown, setMarkdown] = useState(instructions)
@@ -97,39 +99,39 @@ let demo = "# Introducing *Markdown Slides*\n\n" +
   const [current, setCurrent] = useState([0])
   const [legend, setLegend] = useState([])
 
-  // Accessing the contents of the state variables
-  const currentSlide = current
+  // State variables
+  let currentSlide = current
   let initial = markdown
-  const currentSlides = slides
-  const beforeEdit = beforeEditSlides
-  const currentLegend = legend
+  let currentSlides = slides
+  let beforeEdit = beforeEditSlides
+  let currentLegend = legend
  
   useEffect(() => {
 
     setUpDemo(demo)
+
     // eslint-disable-next-line
- }, [demo]);
+  }, []);
   
   function findChangedIndex(before, after) {
-    // Check if the arrays are of different lengths
+
+    // Check if the arrays are different lengths
     if (before.length !== after.length) {
-      return 0 // Indicates that the arrays have different lengths
+      return 0 // Indicates that arrays have different lengths
     }
-  
+
     // Compare the elements of the arrays
     for (let i = 0; i < before.length; i++) {
       if (before[i] !== after[i]) {
-        return i // Return the index of the first difference found
+        return i // Return index of the first difference found
       }
     }
-    // If the arrays are identical
-    return -1 // Indicates that there are no changes
+
+    return -1 // If the arrays are identical, indicate that there are no changes
   }
 
   const setUpDemo = (text) => {
-
     setMarkdown(text)
-
     // Captures state of current slides for later comparison
     setbeforeEditSlides(currentSlides)
 
@@ -206,9 +208,6 @@ let demo = "# Introducing *Markdown Slides*\n\n" +
     setCurrent(findChangedIndex(beforeEdit, currentSlides))
   }
 
-  // Allow navigation by arrow keys
-  document.onkeydown = navigateSlides
-
   function navigateSlides(e) {
     if(document.activeElement !== document.getElementById('editor_md')) {
       if (e.keyCode == '38' || e.keyCode == '37') {
@@ -221,43 +220,49 @@ let demo = "# Introducing *Markdown Slides*\n\n" +
   }
 
   return (
-    <div className="App">
+    <>
+    <header>
       <img src={logo} className="logo" alt="Logo" />
-      <div className="slide-view">
-        <div className="legend">
+    </header>
+    <main>
+      <nav>
+        <ol>
           {currentLegend.map((title, index) => (
-             <div key={'slide-' + index} className="title-container" onClick={() => setCurrent(index)}>
-                <ReactMarkdown className={(currentSlide === index) ? ('current-slide title')  : 'title'}  key={index} remarkPlugins={[gfm]} children={title} />
-              </div>
-            ))}
-        </div>
+            <li key={index} onClick={() => setCurrent(index)}>
+              <ReactMarkdown className={(currentSlide === index) ? ('current-slide title')  : 'title'}  key={index} remarkPlugins={[gfm]} children={title} />
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <div className="slide-view">
         <FullScreen handle={handle}>
           <div className="counter">
-            <p>{slides.length + " / " +  (currentSlide + 1)}</p>
+            <p>{(currentSlide + 1) + " / " +  slides.length}</p>
           </div>
           <div className="slide">
-            <ReactMarkdown id="presentation-area" className="slide-content" remarkPlugins={[gfm]} children={currentSlides[currentSlide]} />
-          </div>
-          <div className="controls">
-            <IconButton aria-label="delete" size="large" className="previous-slide" onClick={() => (current > 0) && setCurrent(current - 1)}>
-              <ArrowBackIcon/>
-            </IconButton>
-            <IconButton className="fullscreen-enter" onClick={handle.enter}>
-              <FullscreenIcon />
-            </IconButton>
-            <IconButton className="fullscreen-exit" onClick={handle.exit}>
-              <FullscreenExitIcon />
-            </IconButton>
-            <IconButton aria-label="delete" size="large" className="next-slide" onClick={() => (slides.length - 1 > current) && setCurrent(current + 1)}>
-              <ArrowForwardIcon/>
-            </IconButton>
+            <section id="controls">
+                <IconButton aria-label="Previous Slide" size="large" className="previous-slide" onClick={() => (current > 0) && setCurrent(current - 1)}>
+                  <ArrowBackIcon/>
+                </IconButton>
+                <IconButton aria-label="Enter Fullscreen" className="fullscreen-enter" onClick={handle.enter}>
+                  <FullscreenIcon />
+                </IconButton>
+                <IconButton aria-label="Exit Fullscreen" className="fullscreen-exit" onClick={handle.exit}>
+                  <FullscreenExitIcon />
+                </IconButton>
+                <IconButton aria-label="Next Slide" size="large" onClick={() => (slides.length - 1 > current) && setCurrent(current + 1)}>
+                  <ArrowForwardIcon/>
+                </IconButton>
+              </section>
+            <ReactMarkdown className="slide-content" remarkPlugins={[gfm]} children={currentSlides[currentSlide]} />
           </div>
         </FullScreen>
       </div>
       <div className="markdown-view">
         <MdEditor id="editor" style={{ height: '100%' }}  view={{ menu: true, md: true, html: false }} value={initial} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
       </div>
-    </div>
+    </main>
+    </>
   )
 }
 
