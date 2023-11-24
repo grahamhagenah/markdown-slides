@@ -5,15 +5,33 @@ body {
   --primary: #fafafa;
 }
 
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+   }
+}
+
 main {
   display: flex;
   height: 95vh;
 }
 
 .logo {
-  height: 35px;
-  width: 35px;
-  margin: 1rem;
+  height: 40px;
+  width: 40px;
+  margin: 0.75rem;
+}
+
+nav {
+  max-height: 90vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  animation: fadeInAnimation ease .25s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 nav ol {
@@ -24,6 +42,38 @@ nav ol {
 
 nav  li {
   margin: 0.75rem 0;
+  scroll-snap-align: start;
+  counter-increment: step-counter;
+  position: relative;
+}
+
+li .title:before {
+  color: black;
+  opacity: .5;
+  content: counter(step-counter);
+  transform: translateX(-20px)
+}
+
+.title {
+  padding: 10px;
+  margin: 0 1rem 0 10px;
+  border-radius: 10px;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  border: 3px solid rgb(224, 224, 224);
+  overflow: hidden;
+  padding-left: 2.5rem;
+}
+
+nav h2, 
+nav h1 {
+  font-weight: 500;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .title:hover {
@@ -50,33 +100,12 @@ button {
   border: none;
 }
 
-.title {
-  padding: 10px;
-  margin: 0 1rem 0 10px;
-  border-radius: 10px;
-  height: 3.5rem;
-  display: flex;
-  align-items: center;
-  border: 3px solid rgb(224, 224, 224);
-  overflow: hidden;
-}
-
 .slide-content {
   margin-top: 3rem;
 }
 
 .current-slide  {
   border: 3px solid black;
-}
-
-nav h2, 
-nav h1 {
-  font-weight: 500;
-  display: inline-block;
-  padding: 5px;
-  margin: 5px 0;
-  font-size: 14px;
-  line-height: 1.5;
 }
 
 .fullscreen-enabled  {
@@ -94,6 +123,9 @@ nav h1 {
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .fullscreen-enabled #controls {
@@ -196,6 +228,9 @@ nav h1 {
   text-align: left;
   width: 65%;
   height: 100%;
+  animation: fadeInAnimation ease 1.25s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 table {
@@ -222,8 +257,8 @@ main .rc-md-editor .editor-container {
   background-color: transparent;
 }
 
-nav {
-  overflow-y: scroll;
+main .rc-md-editor .editor-container>.section {
+  border-right: none;
 }
 
 #editor_md {
@@ -238,6 +273,9 @@ nav {
 
 .markdown-view {
   width: 35%;
+  animation: fadeInAnimation ease 1.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 main .rc-md-editor .rc-md-navigation {
@@ -282,6 +320,12 @@ main .rc-md-editor .rc-md-navigation {
 .slide li {
   line-height: 1.5;
 }
+
+/* 
+* * * * * * * * * * * 
+  Styles for small screens
+* * * * * * * *  * * * 
+*/
 
 @media (max-width: 900px) {
   .fullscreen {

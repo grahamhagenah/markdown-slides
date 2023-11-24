@@ -222,7 +222,9 @@ let demo = "# Introducing *Markdown Slides*\n\n" +
   return (
     <>
     <header>
-      <img src={logo} className="logo" alt="Logo" />
+      <a href="/">
+        <img src={logo} className="logo" alt="Logo" />
+      </a>
     </header>
     <main>
       <nav>
