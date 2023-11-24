@@ -108,9 +108,9 @@ button {
   border: none;
 }
 
-.slide-content {
+/* .slide-content {
   margin-top: 3rem;
-}
+} */
 
 .current-slide  {
   border: 3px solid black;
@@ -122,18 +122,18 @@ button {
 
 .fullscreen.fullscreen-enabled {
   justify-content: space-between;
+  padding: 0;
 }
 
 .fullscreen-enabled .slide {
-  padding: 0 25% 5% 25%;
+  padding: 5% 25%;
   overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   height: 100%;
   animation: fadeInAnimation ease 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  display: grid;
+  place-items: center;
 }
 
 .fullscreen-enabled #controls {
@@ -144,8 +144,16 @@ button {
   right: 0; 
   margin-left: auto; 
   margin-right: auto; 
-  background-color: transparent;
 }
+
+.fullscreen-enabled h1 {
+  font-size: 4rem;
+}
+
+.fullscreen-enabled h2 {
+  font-size: 3rem;
+}
+
 
 #controls {
   position: relative;
@@ -153,9 +161,11 @@ button {
   display: flex;
   justify-content: space-between;
   width: 20%;
-  border-radius: 50px;
+  border-radius: 70px;
   background-color: var(--primary);
-  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 #controls button {
@@ -189,7 +199,7 @@ button {
   flex-direction: column;
   justify-content: space-between;
   overflow-y: scroll;
-  padding-bottom: 0;
+  padding-bottom: 3rem;
 }
 
 .slide blockquote {
@@ -237,6 +247,7 @@ button {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   word-wrap: anywhere;
+  overflow-y: scroll;
 }
 
 table {
@@ -245,10 +256,6 @@ table {
 
 table thead {
   background-color: #f6f6f6;
-}
-
-tbody {
-  font-size: 20px;
 }
 
 table th, table td {
