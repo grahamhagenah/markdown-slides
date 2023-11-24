@@ -208,6 +208,10 @@ let demo = "# Introducing *Markdown Slides*\n\n" +
     setCurrent(findChangedIndex(beforeEdit, currentSlides))
   }
 
+  // const newSlide = () => {
+  //   setMarkdown(text)
+  // }
+
   function navigateSlides(e) {
     if(document.activeElement !== document.getElementById('editor_md')) {
       if (e.keyCode == '38' || e.keyCode == '37') {
@@ -234,6 +238,9 @@ let demo = "# Introducing *Markdown Slides*\n\n" +
               <ReactMarkdown className={(currentSlide === index) ? ('current-slide title')  : 'title'}  key={index} remarkPlugins={[gfm]} children={title} />
             </li>
           ))}
+          {/* <li className="title" id="new-slide">
+            <button onClick={() => newSlide()}>New Slide</button>
+          </li> */}
         </ol>
       </nav>
       <div className="slide-view">
