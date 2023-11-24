@@ -1,12 +1,9 @@
-export const instructions =  
-"# Introducing *Markdown Slides*\n\n" +
+export const demo = "# Introducing *Markdown Slides*\n" + "---\n" + "---\n" +
 "Markdown is a lightweight markup language that allows you to format plain text documents. It is easy to learn and widely used for creating documents and web pages.\n\n" +
 "Now you can make **presentations** in markdown. This web application transforms the markup language into simple slide decks to draft, share, or present.\n\n" +
 "Read on to learn more or start making slides in the markdown editor :‑)\n\n" +
-"## Creating New Slides" +
-"\n\n" +
-"The H1 and H2 tags mark the beginning of new slides. Each heading is denoted by hashtags (#) to establish hierarchy in the document." +
-"\n" + "\n" +
+"## Creating New Slides\n\n" +
+"The H1 and H2 tags mark the beginning of new slides. Each heading is denoted by hashtags (#) to establish hierarchy in the document.\n\n" +
 "Type in the hashtags manually or use the formatting menu to create new headings." +
 "\n" + "\n" +
 "If you make a mistake, there's an undo button too." +
@@ -54,9 +51,8 @@ export const instructions =
 "| Spin  | Robert Charles Wilson | 2006" + "\n" +
 "| Speaker for the Dead | Orson Scott Card | 1987" + "\n" +
 "\n" + "\n" +
-"## Writing Code" +
-"\n" +
-"Use the `printf()` function." + 
+"## Writing Code" + "\n" +
+"You can write `` inline code `` as well." + "\n" +
 "\n" + "\n" +
 "## How It's Built" +
 "\n" + "\n" + 

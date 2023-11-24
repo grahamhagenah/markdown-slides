@@ -49,6 +49,17 @@ nav li {
   position: relative;
 }
 
+nav .button-container {
+
+  bottom: 0;
+  margin: 3rem;
+  background-color: white;
+}
+
+nav .button-container button {
+  border: 3px solid #e0e0e0;
+}
+
 li .title:before {
   color: black;
   opacity: .5;
@@ -107,10 +118,6 @@ button {
   background-color: transparent;
   border: none;
 }
-
-/* .slide-content {
-  margin-top: 3rem;
-} */
 
 .current-slide  {
   border: 3px solid black;
