@@ -1,8 +1,24 @@
+:root {
+  --primary: #fafafa;
+  --text-color: #222;
+  --bkg-color: #fafafa;
+  --alt-bk-color: #f6f6f6;
+  --anchor-color: #0033cc;
+}
+
 body {
   overflow: hidden;
   font-family: 'STIX Two Text', sans-serif;
   font-size: 24px;
-  --primary: #fafafa;
+  color: var(--text-color);
+  background: var(--bkg-color);
+}
+
+body.dark-theme {
+  --text-color: #fafafa;
+  --bkg-color: #121212;
+  --alt-bk-color: #222222;
+  --anchor-color: #809fff;
 }
 
 @keyframes fadeInAnimation {
@@ -148,12 +164,8 @@ button {
 
 .fullscreen-enabled #controls {
   position: absolute;
-  bottom: 0;
-  margin: 3rem;
-  left: 0; 
-  right: 0; 
-  margin-left: auto; 
-  margin-right: auto; 
+  bottom: 3rem;
+  margin: 0 auto;
 }
 
 .fullscreen-enabled h1 {
@@ -161,16 +173,13 @@ button {
 }
 
 .fullscreen-enabled h2 {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 
 #controls {
   position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  width: 20%;
+  display: inline-block;
   border-radius: 70px;
   background-color: var(--primary);
   background: rgba(255, 255, 255, 0.58);
@@ -227,20 +236,6 @@ button {
   justify-content: center;
 }
 
-/* .fullscreen.fullscreen-enabled {
-  margin-top: 10px;
-  border-radius: 5px;
-  width: 100%;
-  padding: 0 5rem;
-  border-radius: 16px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow-y: scroll;
-  transition: all .25s linear;
-} */
-
 .slide p {
   font-size: 24px;
   line-height: 1.5;;
@@ -258,6 +253,10 @@ button {
   animation-fill-mode: forwards;
   word-wrap: anywhere;
   overflow-y: scroll;
+}
+
+.slide-content {
+  color: var(--text-color);
 }
 
 table {
@@ -284,10 +283,15 @@ main .rc-md-editor .editor-container>.section {
   border-right: none;
 }
 
+main .rc-md-editor {
+  background-color: var(--bkg-color);
+}
+
 #editor_md {
   padding: 1.5rem;
   font-size: 16px;
-  background-color: var(--primary);
+  background-color: var(--alt-bk-color);
+  color: var(--text-color);
   border-radius: 10px;
   height: calc(100% - 4rem);
   border: none;
@@ -302,6 +306,7 @@ main .rc-md-editor .editor-container>.section {
 
 main .rc-md-editor .rc-md-navigation {
   background: #ffffff;
+  background: var(--bkg-color);
   border: none;
 }
 
@@ -433,11 +438,6 @@ main .rc-md-editor .rc-md-navigation {
   .markdown-view {
     width: 100%;
     display: block;
-  }
-
-  #editor_md {
-    background-color: black;
-    color: white;
   }
 
   main {

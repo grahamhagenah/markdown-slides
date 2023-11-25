@@ -12,6 +12,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import IconButton from '@mui/material/IconButton'
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit'
 import AddIcon from '@mui/icons-material/Add';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
 import {demo} from './demo.js'
 
 // Initialize a markdown parser
@@ -161,6 +162,9 @@ export default function App() {
                 </IconButton>
                 <IconButton aria-label="New Slide" size="large" className="new-slide" onClick={() => mdEditor.current.insertText(newSlideContent)}>
                   <AddIcon/>
+                </IconButton>
+                <IconButton aria-label="Dark Mode Toggle" size="large" className="mode-toggle" onClick={() => document.body.classList.toggle("dark-theme")}>
+                  <Brightness4Icon/>
                 </IconButton>
                 <IconButton aria-label="Next Slide" size="large" onClick={() => (slides.length - 1 > current) && setCurrent(current + 1)}>
                   <ArrowForwardIcon/>
