@@ -18,8 +18,6 @@ import {demo} from './demo.js'
 // Initialize a markdown parser
 const mdParser = new MarkdownIt(/* Markdown-it options */)
 
-const newSlideContent = '\n\n## New Slide\nAdd slide content here'
-
 // Remove options from editor 
 Editor.unuse(Plugins.FullScreen) // full screen
 Editor.unuse(Plugins.ModeToggle) // mode toggle
@@ -49,23 +47,44 @@ export default function App() {
   
   function findChangedIndex(before, after) {
 
-    // Check if the arrays are different lengths
-    if (before.length !== after.length) {
-      return 0 // Indicates that arrays have different lengths
+    if(before.length === 0) {
+      return 0
     }
-    // Compare the elements of the arrays
-    for (let i = 0; i < before.length; i++) {
-      if (before[i] !== after[i]) {
-        return i // Return index of the first difference found
+
+    // User added content, find index
+    if(before.length < after.length) {
+      for (let i = 0; i < before.length; i++) {
+        if (before[i] !== after[i]) {
+          return i + 1 // Return index of the first difference found, indicating content added before
+        }
+      }
+      return before.length + 1 // Return one index beyond before array, indicating content added after
+
+    }
+
+    // User deleted content, find index
+    if(before.length > after.length) {
+      for (let i = 0; i < after.length; i++) {
+        if (before[i] !== after[i]) {
+          return i // Return index of the first difference found, indicating content added before end
+        }
+      }
+      return after.length + 1 // Return one index beyond before array, indicating content added after
+    }
+
+    // User edited content, find index
+    if(before.length === after.length) {
+      for (let i = 0; i < after.length; i++) {
+        if (before[i] !== after[i]) {
+          return i // Return index of the first difference found, indicating content added before end
+        }
       }
     }
-    return -1 // If the arrays are identical, indicate that there are no changes
   }
 
   const handleEditorChange = ({text}) => {
-
-    // Captures state of current slides for later comparison
-    setStash(currentSlides)
+    
+    setStash(currentSlides) // Captures state of current slides for later comparison
 
     // Split the markdown text by lines
     let lines = text.split('\n')
@@ -96,23 +115,25 @@ export default function App() {
       }
     })
 
-    // If a new slide has been found, set current to the new slide
-    if(sections.lastIndexOf('## New Slide\nAdd slide content here') ===  sections.length-1) {
-      setCurrent(sections.length-1)
-      let lastListItem = document.querySelector("ol").lastElementChild
-      // Set the tabindex to make it focusable (if it's not already)
-      lastListItem.tabIndex = 0;
-      // Shift focus to new slide
-      lastListItem.focus();
-    }
-    // Otherwise set current to the latest edit
-    else {
-      setCurrent(findChangedIndex(stash, currentSlides))
-    }
-
+    setCurrent(findChangedIndex(stash, currentSlides))
     setSlides(sections)
     setLegend(legend)
   }
+
+  function createSlide() {
+    // Focus on last character in editor to ensure new slide is inserted last
+    focusLastCharacter('editor_md');
+    mdEditor.current.insertText('\n\n## New Slide\nAdd content here')
+  }
+
+  function focusLastCharacter(textareaId) {
+    let textarea = document.getElementById(textareaId);
+    if (textarea) {
+      let length = textarea.value.length;
+      textarea.focus();
+      textarea.setSelectionRange(length, length);
+    }
+}
 
   function navigateSlides(e) {
     if(document.activeElement !== document.getElementById('editor_md')) {
@@ -160,7 +181,7 @@ export default function App() {
                 <IconButton aria-label="Exit Fullscreen" className="fullscreen-exit" onClick={handle.exit}>
                   <FullscreenExitIcon />
                 </IconButton>
-                <IconButton aria-label="New Slide" size="large" className="new-slide" onClick={() => mdEditor.current.insertText(newSlideContent)}>
+                <IconButton aria-label="New Slide" size="large" className="new-slide" onClick={createSlide}>
                   <AddIcon/>
                 </IconButton>
                 <IconButton aria-label="Dark Mode Toggle" size="large" className="mode-toggle" onClick={() => document.body.classList.toggle("dark-theme")}>
