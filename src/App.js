@@ -47,39 +47,28 @@ export default function App() {
   
   function findChangedIndex(before, after) {
 
-    if(before.length === 0) {
+    // Account for array comparator mistaking line breaks for changes
+    let skipLineBreak = 0
+
+    // The loop runs until the shorter array's length
+    let minLength = Math.min(before.length, after.length)
+
+    if(minLength === 0) {
       return 0
     }
 
-    // User added content, find index
+    // If before is less than after, the user has added a slide
     if(before.length < after.length) {
-      for (let i = 0; i < before.length; i++) {
-        if (before[i] !== after[i]) {
-          return i + 1 // Return index of the first difference found, indicating content added before
-        }
-      }
-      return before.length + 1 // Return one index beyond before array, indicating content added after
-
+      skipLineBreak = 1
     }
 
-    // User deleted content, find index
-    if(before.length > after.length) {
-      for (let i = 0; i < after.length; i++) {
-        if (before[i] !== after[i]) {
-          return i // Return index of the first difference found, indicating content added before end
-        }
-      }
-      return after.length + 1 // Return one index beyond before array, indicating content added after
-    }
-
-    // User edited content, find index
-    if(before.length === after.length) {
-      for (let i = 0; i < after.length; i++) {
-        if (before[i] !== after[i]) {
-          return i // Return index of the first difference found, indicating content added before end
-        }
+    // Common loop for all scenarios
+    for (let i = 0; i < minLength; i++) {
+      if (before[i] !== after[i]) {
+        return i + skipLineBreak // Return index of the first difference found
       }
     }
+    return minLength + skipLineBreak
   }
 
   const handleEditorChange = ({text}) => {
@@ -127,11 +116,11 @@ export default function App() {
   }
 
   function focusLastCharacter(textareaId) {
-    let textarea = document.getElementById(textareaId);
+    let textarea = document.getElementById(textareaId) 
     if (textarea) {
-      let length = textarea.value.length;
-      textarea.focus();
-      textarea.setSelectionRange(length, length);
+      let length = textarea.value.length
+      textarea.focus()
+      textarea.setSelectionRange(length, length)
     }
 }
 
